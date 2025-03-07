@@ -6,6 +6,7 @@ from ast_transformer import TorchMathTransformer  # Assuming this is available i
 import torch
 import torch.nn as nn
 import os
+import inspect
 
 GENERATED_DIR = "generated"  # Directory to save transformed code
 SAVE_TRANSFORMED_CODE = True # Flag to control saving transformed code
@@ -36,6 +37,8 @@ def execute_code(code, global_namespace=None, torch_compiled=False):
 
         if math_module and input_tensors and isinstance(input_tensors, list) and input_tensors:
             model = math_module()
+            num_args = len(inspect.getfullargspec(model.forward).args)
+            print(num_args)
             if torch_compiled and USE_TORCH_COMPILE: # Only compile if torch_compiled is True and global flag is True
                 try:
                     model = torch.compile(model)
@@ -44,15 +47,25 @@ def execute_code(code, global_namespace=None, torch_compiled=False):
                     print(f"Error during torch.compile (continuing without compilation): {compile_e}")
                     # Continue without compilation if torch.compile fails, for robustness
 
-            sample_input = input_tensors[0]
-            output = model(sample_input)
-            return output, sample_input, input_tensors
+
+            output= []
+
+
+           
+            for i in range(len(input_tensors)):
+
+                
+                if num_args>2:
+                    output.append(model.forward(*input_tensors[i]))
+                else: 
+                    output.append(model(input_tensors[i]))
+                return output,  input_tensors
         else:
-            return None, None, input_tensors # Indicate failure to extract output but return inputs if available
+            return  None, input_tensors # Indicate failure to extract output but return inputs if available
 
     except Exception as e:
         print(f"Error executing code (uncompiled/torch_compiled={torch_compiled}): {e}")
-        return None, None, None
+        return  None, None
 
 def run_code_and_compare(filename):
     """
@@ -79,11 +92,11 @@ def run_code_and_compare(filename):
             print(f"Error saving transformed source code to {transformed_filename}: {e}")
 
 
-    original_output_uncompiled, _, _ = execute_code(original_code)
-    transformed_output_uncompiled, _, _ = execute_code(transformed_code, global_namespace={'PtModule': nn.Module}) # Changed Module name to PtModule
+    original_output_uncompiled, _ = execute_code(original_code)
+    transformed_output_uncompiled,  _ = execute_code(transformed_code, global_namespace={'PtModule': nn.Module}) # Changed Module name to PtModule
 
-    original_output_torch_compiled, _, _ = execute_code(original_code, torch_compiled=True)
-    transformed_output_torch_compiled, _, _ = execute_code(transformed_code, global_namespace={'PtModule': nn.Module}, torch_compiled=True) # Changed Module name to PtModule
+    original_output_torch_compiled,  _ = execute_code(original_code, torch_compiled=True)
+    transformed_output_torch_compiled,  _ = execute_code(transformed_code, global_namespace={'PtModule': nn.Module}, torch_compiled=True) # Changed Module name to PtModule
 
 
     return original_code, transformed_code, \

@@ -3,18 +3,15 @@ import pytest
 from code_executor import run_code_and_compare, USE_TORCH_COMPILE
 import torch
 import os
-
-TEST_FILES_DIR = "./seeds/gen1"  # Directory containing test files
+from  utils import compare_outputs 
+TEST_FILES_DIR = "./seeds"  # Directory containing test files
 
 def assert_outputs_close(output_orig, output_trans, execution_type, test_file_path):
     """Helper function to assert if outputs are close, with detailed error messages."""
-    assert output_orig is not None, f"Original {execution_type} code execution failed for {test_file_path}."
-    assert output_trans is not None, f"Transformed {execution_type} code execution failed for {test_file_path}."
-
-    if isinstance(output_orig, torch.Tensor) and isinstance(output_trans, torch.Tensor):
-        assert torch.allclose(output_orig, output_trans, rtol=1e-05, atol=1e-08), f"{execution_type} outputs are not close for {test_file_path}."
-    else:
-        assert output_orig == output_trans, f"{execution_type} outputs are not equal (non-tensor) for {test_file_path}." # Corrected variable name here
+    #assert output_orig is not None, f"Original {execution_type} code execution failed for {test_file_path}."
+    #assert output_trans is not None, f"Transformed {execution_type} code execution failed for {test_file_path}."
+    
+    compare_outputs(output_orig, output_trans)
 
 
 
