@@ -1,4 +1,5 @@
 openai
 pytest
 torch
+pytest-cov
 # Maybe some morie

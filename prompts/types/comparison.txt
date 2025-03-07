@@ -1,0 +1,1 @@
+Create a module that contains multiple python math operators and comparisons operator.

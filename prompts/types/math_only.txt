@@ -1,0 +1,1 @@
+Create a mosule that only contains normal math operations using ordinary python math operators
