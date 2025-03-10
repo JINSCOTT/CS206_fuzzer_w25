@@ -32,4 +32,6 @@ def test_code_transformation_directory(test_file_path):
 
     assert_outputs_close(original_output_uncompiled, transformed_output_uncompiled, "Uncompiled", test_file_path)
     if USE_TORCH_COMPILE: # Only test torch.compile if it's enabled globally
+        assert_outputs_close(original_output_uncompiled,original_output_torch_compiled, "Original", test_file_path)
         assert_outputs_close(original_output_torch_compiled, transformed_output_torch_compiled, "Torch Compiled", test_file_path)
+        

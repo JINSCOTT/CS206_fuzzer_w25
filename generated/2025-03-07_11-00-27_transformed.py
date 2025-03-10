@@ -19,7 +19,7 @@ input_tensors = [torch.tensor([[1.0, 2.0], [3.0, 4.0]]), torch.tensor([[1.0, 2.0
 def main():
     model = PtModule()
     for input_tensor in input_tensors:
-        add, sub, mul, div, gt, lt = model(input_tensor)
+        (add, sub, mul, div, gt, lt) = model(input_tensor)
         print('Input Tensor:\n', input_tensor)
         print('Add Result:\n', add)
         print('Subtract Result:\n', sub)

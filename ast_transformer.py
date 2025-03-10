@@ -208,7 +208,7 @@ class TorchMathTransformer(ast.NodeTransformer):
             )
             return ast.copy_location(new_node, node)
 
-        elif isinstance(node.op, ast.Invert):
+        elif isinstance(node.op, ast.conda):
             # Handle bitwise not (~x)
             new_node = ast.Call(
                 func=ast.Attribute(

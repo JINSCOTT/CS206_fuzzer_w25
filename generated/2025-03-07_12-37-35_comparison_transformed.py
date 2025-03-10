@@ -18,6 +18,6 @@ class PtModule(nn.Module):
 input_tensors = [torch.tensor([[[1.0, -1.0, 3.0], [4.0, 5.0, -2.0]]]), torch.tensor([[[0.0, 2.0], [-3.0, 4.0]]]), torch.tensor([[[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]]), torch.tensor([[[-1.0], [0.0], [1.0]]]), torch.tensor([[[2.0, 3.0, -1.0, 5.0]]])]
 if __name__ == '__main__':
     model = PtModule()
-    for i, input_tensor in enumerate(input_tensors):
+    for (i, input_tensor) in enumerate(input_tensors):
         result = model(input_tensor)
         print(f'Results for input tensor {i}: {result}')

@@ -41,7 +41,7 @@ def execute_code(code, global_namespace=None, torch_compiled=False):
             print(num_args)
             if torch_compiled and USE_TORCH_COMPILE: # Only compile if torch_compiled is True and global flag is True
                 try:
-                    model = torch.compile(model)
+                    model = torch.compile(model, backend="inductor")
                     print("Model compiled with torch.compile!")
                 except Exception as compile_e:
                     print(f"Error during torch.compile (continuing without compilation): {compile_e}")

@@ -17,5 +17,5 @@ input_tensors = [torch.tensor([[1, 2], [3, 4]], dtype=torch.float32), torch.tens
 if __name__ == '__main__':
     model = PtModule()
     outputs = model(input_tensors)
-    for i, output in enumerate(outputs):
+    for (i, output) in enumerate(outputs):
         print(f'Output {i}: {output}')

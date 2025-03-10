@@ -58,6 +58,8 @@ for prompt_file_path in type_prompt_files:
             f.write(generated_code)
 
         result = run_script(filename)
+        #　Not runnable
+        os.remove(filename)
         if result == 1:
             success_counter += 1
 
