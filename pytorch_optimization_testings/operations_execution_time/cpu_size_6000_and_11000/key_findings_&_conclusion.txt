@@ -1,0 +1,54 @@
+Key Findings:
+
+1. General Trend: Execution Time Increases with Tensor Size
+
+  - As expected, execution time increases with larger tensor sizes across all operations 
+        (add, sub, mul, div).
+  - For small tensors (100 × 100 to 4000 × 4000), execution time differences are negligible.
+  - For large tensors (4000 × 4000 to 11,000 × 11,000), execution time scales significantly.
+
+2. Comparison of Torch Operations vs. Python Operators
+  - Key observation: Both implementations take similar time, meaning PyTorch 
+        does not significantly optimize division like addition or multiplication.
+
+  1.  Addition (torch.add vs. +)
+  - torch.add() and + operator show minimal difference.
+  - For larger tensors (6000 × 6000 and beyond), torch.add() is slightly faster than +, 
+        indicating minor optimization benefits.
+  
+  2. Subtraction (torch.sub vs. -)
+  - torch.sub() is more stable in execution time.
+  - The - operator has slightly higher variation, especially as tensor sizes increase.
+  - The difference is small, but for very large tensors, torch.sub() seems more consistent.
+  
+  3. Multiplication (torch.mul vs. *)
+  - Almost no difference between torch.mul() and * for most sizes.
+  - At 7,000 × 7,000 and above, torch.mul() is slightly faster, possibly due to PyTorch’s optimization.
+
+  4. Division (torch.div vs. /)
+  - Division operations take significantly longer than other arithmetic operations.
+  - Noticeable slowdown for larger tensors, e.g., (11,000 × 11,000):
+  - torch.div: 0.317s vs. / operator: 0.316s
+
+
+2. Unexpected Behavior in Large Tensors
+  1. Non-linear scaling for division (torch.div and /)
+  - Unlike other operations, division execution time does not scale smoothly
+  - The slowdown beyond 5000 × 5000 is more dramatic compared to add, sub, and mul.
+  - This suggests that division operations are more memory-intensive or that hardware efficiency 
+        decreases for very large tensors.
+
+
+Conclusions:
+
+- PyTorch functions (torch.add, torch.sub, etc.) are generally as fast as their Python operator 
+    equivalents (+, -, *, /).
+- For very large tensors (6000 × 6000 and beyond), PyTorch operations tend to be slightly more efficient.
+- Division is the slowest operation overall, and performance drops significantly for larger tensors.
+- Multiplication and addition operations scale better than division.
+- For small and medium-sized tensors, there is no major performance difference between PyTorch functions 
+    and native operators.
+
+
+
+
