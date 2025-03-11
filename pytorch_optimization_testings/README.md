@@ -1,7 +1,6 @@
 ### Equivalent Operators in PyTorch Optimization Testing
 
-# Additional Test Generations and Graphs Data
-
+1. PyTorch Optimization Testing Colab Link:
 * https://colab.research.google.com/drive/1CgJsu5hUQKztL3k_NwYKiyO-Rrf3RbzN?authuser=1#scrollTo=WEdWJaewbgUJ
 
 # Content
