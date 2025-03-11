@@ -1,0 +1,4 @@
+Test Generations:
+
+- Plot Tables on tensor size from 100 to 6000 and 4000 to 11000 of each operation
+- Runtime Type: CPU

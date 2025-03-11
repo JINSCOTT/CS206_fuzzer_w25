@@ -1,0 +1,8 @@
+### 1. Execution Time Results Between Operations
+
+1. Torch.add(a, b) vs a + b.
+2. Torch.sub(a, b) vs a - b.
+3. Torch.mul(a, b) vs a * b
+4. Torch.div(a, b) vs a / b
+
+- Runtime Type: CPU

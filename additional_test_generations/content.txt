@@ -1,0 +1,15 @@
+### Equivalent Operators in PyTorch Optimization Testing
+
+- Do test generations from colab to VScode: pip install torch torchvision torchaudio
+
+1. Execution Time Results Between Operations
+  - Addition & Substraction & Multiplication & Division
+  
+2. Background
+  - Operation Fusion in PyTorch
+  - Loop Optimization
+  - Expression Optimization (+, torch.sub, *, torch.div)
+  - PyTorch Inductor Optimizations
+
+3. Test Different Operation Combination for Performance Comparisons
+4. Compare the performance with and without torch.compile()
