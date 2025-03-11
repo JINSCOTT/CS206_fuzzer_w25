@@ -1,5 +1,0 @@
-4. Compare the performance with and without torch.compile()
-
-- Benchmark both non-compiled and compiled versions.
-- Run each version 10,000 times and discard warm-up runs.
-- Plot a side-by-side comparison.
