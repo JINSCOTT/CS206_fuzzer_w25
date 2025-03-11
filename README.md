@@ -28,3 +28,9 @@ pytest
 * The py
 * Export OPENAI_API_KEY=key
 
+
+### Equivalent Operators in PyTorch Optimization Testing
+
+## PyTorch Optimization Testing Colab Link:
+
+* https://colab.research.google.com/drive/1CgJsu5hUQKztL3k_NwYKiyO-Rrf3RbzN?authuser=1#scrollTo=WEdWJaewbgUJ
