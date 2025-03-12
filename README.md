@@ -1,36 +1,29 @@
 # Atomic fuzzer
 
-* Install depedency
+* Install dependency
 * pip install -r requirements.txt
 
 ## How to run
+### To generate seeds
+* Export Openai key
+```bash
+export OPENAI_API_KEY='yourkey'
+```
 
+```bash
+python generate.py
+```
+
+### To run tests
 ```bash
 pytest
 ```
-
-## What have to be done
-
-### ast_transformer
-
-* Is it robbust enough
-
-### Code_executer
-
-* run all the input not just the first one
-
-### Seed Generation
-
-* We still need better ways to generate test codes
-* We should create a script and put the create script currently to \seeds\gen1
-* Use openAI to create
-* gen1.txt is how they are created currently
-* The py
-* Export OPENAI_API_KEY=key
-
-
-### Equivalent Operators in PyTorch Optimization Testing
-
-## PyTorch Optimization Testing Colab Link:
+### To run coverage
+```bash
+pytest --cov=torch --cov-report html
+```
+## Equivalent Operators in PyTorch Optimization Testing
+* This is an investigation on speed of combination of operators befor and after compiling.
+### PyTorch Optimization Testing Colab Link:
 
 * https://colab.research.google.com/drive/1CgJsu5hUQKztL3k_NwYKiyO-Rrf3RbzN?authuser=1#scrollTo=WEdWJaewbgUJ
